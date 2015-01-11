@@ -1,5 +1,4 @@
-﻿#if !NET35CLIENT && !NET40CLIENT && !SILVERLIGHT
-using System;
+﻿using System;
 using System.Threading;
 using log4net.Appender;
 using log4net.Core;
@@ -16,7 +15,7 @@ namespace Zirpl.Logging.Log4Net
     /// This allows the calling thread to be released quickly, however it does
     /// not guarantee the ordering of events delivered to the attached appenders.
     /// </remarks>
-    public sealed class AsyncAppender : IAppender, IBulkAppender, IOptionHandler, IAppenderAttachable
+    public sealed class AsyncForwardingAppender : IAppender, IBulkAppender, IOptionHandler, IAppenderAttachable
     {
         private AppenderAttachedImpl _appenderAttachedImpl;
         public string Name { get; set; }
@@ -27,9 +26,9 @@ namespace Zirpl.Logging.Log4Net
         public FixFlags Fix { get; set; }
         
         /// <summary>
-        /// Creates a new AsyncAppender instance
+        /// Creates a new AsyncForwardingAppender instance
         /// </summary>
-        public AsyncAppender()
+        public AsyncForwardingAppender()
         {
             Fix = FixFlags.All;
         }
@@ -175,5 +174,3 @@ namespace Zirpl.Logging.Log4Net
 
     }
 }
-
-#endif

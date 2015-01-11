@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Common\CommonLogFactory.cs" />
     <Compile Include="Common\CommonLogWrapper.cs" />
-    <Compile Include="AsyncAppender.cs" />
+    <Compile Include="AsyncForwardingAppender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

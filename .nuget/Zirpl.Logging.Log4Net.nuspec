@@ -3,7 +3,7 @@
   <metadata>
     <id>Zirpl.Logging.Log4Net</id>
     <version>$version$</version>
-    <title>Zirpl's Logging- Log4Net</title>
+    <title>Zirpl Logging- Log4Net</title>
     <authors>Zirpl Software</authors>
     <owners>Zirpl Software</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

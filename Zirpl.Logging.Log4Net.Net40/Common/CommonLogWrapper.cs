@@ -1,5 +1,4 @@
-﻿#if !NET35CLIENT && !NET40CLIENT && !SILVERLIGHT
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace Zirpl.Logging.Log4Net.Common
@@ -118,5 +117,3 @@ namespace Zirpl.Logging.Log4Net.Common
         }
     }
 }
-
-#endif
