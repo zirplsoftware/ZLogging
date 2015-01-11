@@ -18,23 +18,34 @@ namespace Zirpl.Logging.Log4Net
     /// </remarks>
     public sealed class AsyncAppender : IAppender, IBulkAppender, IOptionHandler, IAppenderAttachable
     {
-        private AppenderAttachedImpl appenderAttachedImpl;
+        private AppenderAttachedImpl _appenderAttachedImpl;
         public string Name { get; set; }
+
+        /// <summary>
+        /// Flags passed to the LoggingEvent.Fix property
+        /// </summary>
         public FixFlags Fix { get; set; }
+        
+        /// <summary>
+        /// Creates a new AsyncAppender instance
+        /// </summary>
+        public AsyncAppender()
+        {
+            Fix = FixFlags.All;
+        }
 
         public void ActivateOptions()
         {
         }
-
-
+        
         public void Close()
         {
             // Remove all the attached appenders
             lock (this)
             {
-                if (appenderAttachedImpl != null)
+                if (_appenderAttachedImpl != null)
                 {
-                    appenderAttachedImpl.RemoveAllAppenders();
+                    _appenderAttachedImpl.RemoveAllAppenders();
                 }
             }
         }
@@ -56,19 +67,19 @@ namespace Zirpl.Logging.Log4Net
 
         private void AsyncAppend(object state)
         {
-            if (appenderAttachedImpl != null)
+            lock (this)
             {
-                LoggingEvent loggingEvent = state as LoggingEvent;
-                if (loggingEvent != null)
+                if (_appenderAttachedImpl != null)
                 {
-                    appenderAttachedImpl.AppendLoopOnAppenders(loggingEvent);
-                }
-                else
-                {
-                    LoggingEvent[] loggingEvents = state as LoggingEvent[];
-                    if (loggingEvents != null)
+                    var loggingEvent = state as LoggingEvent;
+                    var loggingEvents = state as LoggingEvent[];
+                    if (loggingEvent != null)
                     {
-                        appenderAttachedImpl.AppendLoopOnAppenders(loggingEvents);
+                        _appenderAttachedImpl.AppendLoopOnAppenders(loggingEvent);
+                    }
+                    else if (loggingEvents != null)
+                    {
+                        _appenderAttachedImpl.AppendLoopOnAppenders(loggingEvents);
                     }
                 }
             }
@@ -78,17 +89,15 @@ namespace Zirpl.Logging.Log4Net
 
         public void AddAppender(IAppender newAppender)
         {
-            if (newAppender == null)
-            {
-                throw new ArgumentNullException("newAppender");
-            }
+            if (newAppender == null) throw new ArgumentNullException("newAppender");
+
             lock (this)
             {
-                if (appenderAttachedImpl == null)
+                if (_appenderAttachedImpl == null)
                 {
-                    appenderAttachedImpl = new log4net.Util.AppenderAttachedImpl();
+                    _appenderAttachedImpl = new log4net.Util.AppenderAttachedImpl();
                 }
-                appenderAttachedImpl.AddAppender(newAppender);
+                _appenderAttachedImpl.AddAppender(newAppender);
             }
         }
 
@@ -98,13 +107,13 @@ namespace Zirpl.Logging.Log4Net
             {
                 lock (this)
                 {
-                    if (appenderAttachedImpl == null)
+                    if (_appenderAttachedImpl == null)
                     {
                         return AppenderCollection.EmptyCollection;
                     }
                     else
                     {
-                        return appenderAttachedImpl.Appenders;
+                        return _appenderAttachedImpl.Appenders;
                     }
                 }
             }
@@ -114,12 +123,13 @@ namespace Zirpl.Logging.Log4Net
         {
             lock (this)
             {
-                if (appenderAttachedImpl == null || name == null)
+                if (_appenderAttachedImpl == null 
+                    || name == null)
                 {
                     return null;
                 }
 
-                return appenderAttachedImpl.GetAppender(name);
+                return _appenderAttachedImpl.GetAppender(name);
             }
         }
 
@@ -127,10 +137,10 @@ namespace Zirpl.Logging.Log4Net
         {
             lock (this)
             {
-                if (appenderAttachedImpl != null)
+                if (_appenderAttachedImpl != null)
                 {
-                    appenderAttachedImpl.RemoveAllAppenders();
-                    appenderAttachedImpl = null;
+                    _appenderAttachedImpl.RemoveAllAppenders();
+                    _appenderAttachedImpl = null;
                 }
             }
         }
@@ -139,9 +149,10 @@ namespace Zirpl.Logging.Log4Net
         {
             lock (this)
             {
-                if (appender != null && appenderAttachedImpl != null)
+                if (appender != null
+                    && _appenderAttachedImpl != null)
                 {
-                    return appenderAttachedImpl.RemoveAppender(appender);
+                    return _appenderAttachedImpl.RemoveAppender(appender);
                 }
             }
             return null;
@@ -151,9 +162,10 @@ namespace Zirpl.Logging.Log4Net
         {
             lock (this)
             {
-                if (name != null && appenderAttachedImpl != null)
+                if (name != null 
+                    && _appenderAttachedImpl != null)
                 {
-                    return appenderAttachedImpl.RemoveAppender(name);
+                    return _appenderAttachedImpl.RemoveAppender(name);
                 }
             }
             return null;
@@ -161,11 +173,6 @@ namespace Zirpl.Logging.Log4Net
 
         #endregion
 
-
-        public AsyncAppender()
-        {
-            Fix = FixFlags.All;
-        }
     }
 }
 

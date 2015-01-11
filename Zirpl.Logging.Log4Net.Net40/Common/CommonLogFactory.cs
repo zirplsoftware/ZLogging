@@ -4,7 +4,11 @@ using log4net.Config;
 
 namespace Zirpl.Logging.Log4Net.Common
 {
-    public class CommonLogFactory : ILogFactory
+    /// <summary>
+    /// An ILogFactory implementation that creates ILog using Common.Logging 
+    /// Logger backings
+    /// </summary>
+    public sealed class CommonLogFactory : ILogFactory
     {
         private static Boolean _initialized;
 
@@ -24,6 +28,9 @@ namespace Zirpl.Logging.Log4Net.Common
             }
         }
 
+        /// <summary>
+        /// Initialized the LogManager to use an instance of the CommonLogFactory
+        /// </summary>
         public static void Initialize()
         {
             if (!_initialized)

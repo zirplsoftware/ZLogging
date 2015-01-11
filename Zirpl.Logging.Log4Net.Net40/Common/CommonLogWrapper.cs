@@ -4,13 +4,11 @@ using System.Reflection;
 
 namespace Zirpl.Logging.Log4Net.Common
 {
-    /// <summary>
-    /// Log class that wraps a Common.Logging.ILog object
-    /// </summary>
-    public class CommonLogWrapper :LogBase
+    internal sealed class CommonLogWrapper :LogBase
     {
         private static readonly FieldInfo DeclaringTypeFieldInfo;
         private static readonly Type NewDeclaringType;
+        private readonly global::Common.Logging.ILog _log;
 
         static CommonLogWrapper()
         {
@@ -21,13 +19,9 @@ namespace Zirpl.Logging.Log4Net.Common
             NewDeclaringType = typeof (CommonLogWrapper);
         }
 
-        /// <summary>
-        /// Creates a new CommonLogWrapper to wrap the provided ILog
-        /// </summary>
-        /// <param name="log"></param>
-        public CommonLogWrapper(global::Common.Logging.ILog log)
+        internal CommonLogWrapper(global::Common.Logging.ILog log)
         {
-            this.Log = log;
+            this._log = log;
 
             // this ensures that locationinfo is correct
             //
@@ -42,63 +36,59 @@ namespace Zirpl.Logging.Log4Net.Common
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ILog
-        /// </summary>
-        protected global::Common.Logging.ILog Log { get; private set; }
 
-        protected override void WriteMessageToLog(LogBase.LogLevel logLevel, object message, Exception exception = null)
+        protected override void WriteMessageToLog(LogLevel logLevel, object message, Exception exception = null)
         {
             switch (logLevel)
             {
                 case LogLevel.Debug:
                     if (exception != null)
                     {
-                        this.Log.Debug(message, exception);
+                        _log.Debug(message, exception);
                     }
                     else
                     {
-                        this.Log.Debug(message);   
+                        _log.Debug(message);   
                     }
                     break;
                 case LogLevel.Info:
                     if (exception != null)
                     {
-                        this.Log.Info(message, exception);
+                        _log.Info(message, exception);
                     }
                     else
                     {
-                        this.Log.Info(message);
+                        _log.Info(message);
                     }
                     break;
                 case LogLevel.Warn:
                     if (exception != null)
                     {
-                        this.Log.Warn(message, exception);
+                        _log.Warn(message, exception);
                     }
                     else
                     {
-                        this.Log.Warn(message);
+                        _log.Warn(message);
                     }
                     break;
                 case LogLevel.Error:
                     if (exception != null)
                     {
-                        this.Log.Error(message, exception);
+                        _log.Error(message, exception);
                     }
                     else
                     {
-                        this.Log.Error(message);
+                        _log.Error(message);
                     }
                     break;
                 case LogLevel.Fatal:
                     if (exception != null)
                     {
-                        this.Log.Fatal(message, exception);
+                        _log.Fatal(message, exception);
                     }
                     else
                     {
-                        this.Log.Fatal(message);
+                        _log.Fatal(message);
                     }
                     break;
             }
@@ -109,19 +99,19 @@ namespace Zirpl.Logging.Log4Net.Common
             switch (logLevel)
             {
                 case LogLevel.Debug:
-                    return this.Log.IsDebugEnabled;
+                    return _log.IsDebugEnabled;
                     break;
                 case LogLevel.Info:
-                    return this.Log.IsInfoEnabled;
+                    return _log.IsInfoEnabled;
                     break;
                 case LogLevel.Warn:
-                    return this.Log.IsWarnEnabled;
+                    return _log.IsWarnEnabled;
                     break;
                 case LogLevel.Error:
-                    return this.Log.IsErrorEnabled;
+                    return _log.IsErrorEnabled;
                     break;
                 case LogLevel.Fatal:
-                    return this.Log.IsFatalEnabled;
+                    return _log.IsFatalEnabled;
                     break;
             }
             return true;
