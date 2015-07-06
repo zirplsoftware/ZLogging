@@ -9,6 +9,34 @@ namespace Zirpl.Logging
     public interface ILog
     {
         /// <summary>
+        /// Logs the message in Trace severity
+        /// </summary>
+        /// <param name="message">The message.</param>
+        void Trace(object message);
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// </summary>
+        /// <param name="exception">The exception to log</param>
+        /// <param name="message">The message.</param>
+        void Trace(Exception exception, object message = null);
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// </summary>
+        /// <param name="format">String to format</param>
+        /// <param name="args">Args to format into the string</param>
+        void TraceFormat(string format, params object[] args);
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// </summary>
+        /// <param name="exception">The exception to log</param>
+        /// <param name="format">String to format</param>
+        /// <param name="args">Args to format into the string</param>
+        void TraceFormat(Exception exception, String format, params object[] args);
+
+        /// <summary>
         /// Logs the message in Debug severity
         /// </summary>
         /// <param name="message">The message.</param>
@@ -19,7 +47,7 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void Debug(Exception exception, object message);
+        void Debug(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Debug severity
@@ -47,7 +75,7 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void Info(Exception exception, object message);
+        void Info(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Info severity
@@ -75,7 +103,7 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void Warn(Exception exception, object message);
+        void Warn(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Warn severity
@@ -103,7 +131,7 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void Error(Exception exception, object message);
+        void Error(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Error severity
@@ -131,7 +159,7 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void Fatal(Exception exception, object message);
+        void Fatal(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Fatal severity
@@ -147,6 +175,11 @@ namespace Zirpl.Logging
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
         void FatalFormat(Exception exception, string format, params object[] args);
+
+        /// <summary>
+        /// Gets whether or not Trace severity logging is enabled
+        /// </summary>
+        bool IsTraceEnabled { get; }
 
         /// <summary>
         /// Gets whether or not Debug severity logging is enabled
@@ -172,14 +205,55 @@ namespace Zirpl.Logging
         /// Gets whether or not Fatal severity logging is enabled
         /// </summary>
         bool IsFatalEnabled { get; }
-        
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// if the log level is enabled
+        /// and catches any exceptions generated
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryTrace(object message);
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// if the log level is enabled
+        /// and catches any exceptions generated
+        /// </summary>
+        /// <param name="exception">The exception to log</param>
+        /// <param name="message">The message.</param>
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryTrace(Exception exception, object message = null);
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// if the log level is enabled
+        /// and catches any exceptions generated
+        /// </summary>
+        /// <param name="format">String to format</param>
+        /// <param name="args">Args to format into the string</param>
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryTraceFormat(string format, params object[] args);
+
+        /// <summary>
+        /// Logs the message in Trace severity
+        /// if the log level is enabled
+        /// and catches any exceptions generated
+        /// </summary>
+        /// <param name="exception">The exception to log</param>
+        /// <param name="format">String to format</param>
+        /// <param name="args">Args to format into the string</param>
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryTraceFormat(Exception exception, String format, params object[] args);
+
         /// <summary>
         /// Logs the message in Debug severity
         /// if the log level is enabled
         /// and catches any exceptions generated
         /// </summary>
         /// <param name="message">The message.</param>
-        void TryDebug(object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryDebug(object message);
 
         /// <summary>
         /// Logs the message in Debug severity
@@ -188,7 +262,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void TryDebug(Exception exception, object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryDebug(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Debug severity
@@ -197,7 +272,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryDebugFormat(string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryDebugFormat(string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Debug severity
@@ -207,7 +283,8 @@ namespace Zirpl.Logging
         /// <param name="exception">The exception to log</param>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryDebugFormat(Exception exception, String format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryDebugFormat(Exception exception, String format, params object[] args);
 
         /// <summary>
         /// Logs the message in Info severity
@@ -215,7 +292,8 @@ namespace Zirpl.Logging
         /// and catches any exceptions generated
         /// </summary>
         /// <param name="message">The message.</param>
-        void TryInfo(object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryInfo(object message);
 
         /// <summary>
         /// Logs the message in Info severity
@@ -224,26 +302,29 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void TryInfo(Exception exception, object message);
-        
-        /// <summary>
-        /// Logs the message in Info severity
-        /// if the log level is enabled
-        /// and catches any exceptions generated
-        /// </summary>
-        /// <param name="format">String to format</param>
-        /// <param name="args">Args to format into the string</param>
-        void TryInfoFormat(string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryInfo(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Info severity
         /// if the log level is enabled
         /// and catches any exceptions generated
         /// </summary>
+        /// <param name="format">String to format</param>
+        /// <param name="args">Args to format into the string</param>
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryInfoFormat(string format, params object[] args);
+
+        /// <summary>
+        /// Logs the message in Info severity
+        /// if the log level is enabled
+        /// and catches any exceptions generated
+        /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryInfoFormat(Exception exception, string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryInfoFormat(Exception exception, string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Warn severity
@@ -251,7 +332,8 @@ namespace Zirpl.Logging
         /// and catches any exceptions generated
         /// </summary>
         /// <param name="message">The message.</param>
-        void TryWarn(object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryWarn(object message);
 
         /// <summary>
         /// Logs the message in Warn severity
@@ -260,7 +342,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void TryWarn(Exception exception, object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryWarn(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Warn severity
@@ -269,7 +352,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryWarnFormat(string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryWarnFormat(string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Warn severity
@@ -279,7 +363,8 @@ namespace Zirpl.Logging
         /// <param name="exception">The exception to log</param>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryWarnFormat(Exception exception, string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryWarnFormat(Exception exception, string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Error severity
@@ -287,7 +372,8 @@ namespace Zirpl.Logging
         /// and catches any exceptions generated
         /// </summary>
         /// <param name="message">The message.</param>
-        void TryError(object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryError(object message);
 
         /// <summary>
         /// Logs the message in Error severity
@@ -296,7 +382,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void TryError(Exception exception, object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryError(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Error severity
@@ -305,7 +392,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryErrorFormat(string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryErrorFormat(string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Error severity
@@ -315,7 +403,8 @@ namespace Zirpl.Logging
         /// <param name="exception">The exception to log</param>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryErrorFormat(Exception exception, string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryErrorFormat(Exception exception, string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Fatal severity
@@ -323,7 +412,8 @@ namespace Zirpl.Logging
         /// and catches any exceptions generated
         /// </summary>
         /// <param name="message">The message.</param>
-        void TryFatal(object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryFatal(object message);
 
         /// <summary>
         /// Logs the message in Fatal severity
@@ -332,7 +422,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="exception">The exception to log</param>
         /// <param name="message">The message.</param>
-        void TryFatal(Exception exception, object message);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryFatal(Exception exception, object message = null);
 
         /// <summary>
         /// Logs the message in Fatal severity
@@ -341,7 +432,8 @@ namespace Zirpl.Logging
         /// </summary>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryFatalFormat(string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryFatalFormat(string format, params object[] args);
 
         /// <summary>
         /// Logs the message in Fatal severity
@@ -351,6 +443,7 @@ namespace Zirpl.Logging
         /// <param name="exception">The exception to log</param>
         /// <param name="format">String to format</param>
         /// <param name="args">Args to format into the string</param>
-        void TryFatalFormat(Exception exception, string format, params object[] args);
+        /// <returns>Returns false if an exception was caught trying to log, otherwise returns true</returns>
+        bool TryFatalFormat(Exception exception, string format, params object[] args);
     }
 }

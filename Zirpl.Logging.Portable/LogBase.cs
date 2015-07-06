@@ -6,13 +6,17 @@ namespace Zirpl.Logging
     /// <summary>
     /// Base <see cref="ILog"/> implementation
     /// </summary>
-    public abstract class LogBase :ILog
+    public abstract class LogBase : ILog
     {
         /// <summary>
         /// Enums for the Log Level
         /// </summary>
         protected enum LogLevel : byte
         {
+            /// <summary>
+            /// Trace
+            /// </summary>
+            Trace,
             /// <summary>
             /// Debug
             /// </summary>
@@ -50,447 +54,589 @@ namespace Zirpl.Logging
         /// <returns>True if the level is enabled, otherwise false</returns>
         protected abstract bool IsLogLevelEnabled(LogLevel logLevel);
 
+        public virtual bool IsTraceEnabled
+        {
+            get { return IsLogLevelEnabled(LogLevel.Trace); }
+        }
+
+        public virtual void Trace(object message)
+        {
+            if (IsLogLevelEnabled(LogLevel.Trace))
+            {
+                WriteMessageToLog(LogLevel.Trace, message);
+            }
+        }
+
+        public virtual void Trace(Exception exception, object message = null)
+        {
+            if (IsLogLevelEnabled(LogLevel.Trace))
+            {
+                WriteMessageToLog(LogLevel.Trace, message, exception);
+            }
+        }
+
+        public virtual void TraceFormat(string format, params object[] args)
+        {
+            if (IsLogLevelEnabled(LogLevel.Trace))
+            {
+                WriteMessageToLog(LogLevel.Trace, String.Format(CultureInfo.InvariantCulture, format, args));
+            }
+        }
+
+        public virtual void TraceFormat(Exception exception, string format, params object[] args)
+        {
+            if (IsLogLevelEnabled(LogLevel.Trace))
+            {
+                WriteMessageToLog(LogLevel.Trace, String.Format(CultureInfo.InvariantCulture, format, args), exception);
+            }
+        }
+
+        public virtual bool TryTrace(object message)
+        {
+            try
+            {
+                Trace(message);
+                return true;
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            {
+                return false;
+                // yes, this is correct- we are eating any exceptions in the Try methods
+            }
+        }
+
+        public virtual bool TryTrace(Exception exception, object message = null)
+        {
+            try
+            {
+                Trace(exception, message);
+                return true;
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            {
+                return false;
+                // yes, this is correct- we are eating any exceptions in the Try methods
+            }
+        }
+
+        public virtual bool TryTraceFormat(string format, params object[] args)
+        {
+            try
+            {
+                TraceFormat(format, args);
+                return true;
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            {
+                return false;
+                // yes, this is correct- we are eating any exceptions in the Try methods
+            }
+        }
+
+        public virtual bool TryTraceFormat(Exception exception, string format, params object[] args)
+        {
+            try
+            {
+                TraceFormat(exception, format, args);
+                return true;
+            }
+            // ReSharper disable once EmptyGeneralCatchClause
+            catch
+            {
+                return false;
+                // yes, this is correct- we are eating any exceptions in the Try methods
+            }
+        }
+
+
+
+
+
+
         public virtual bool IsDebugEnabled
         {
-            get { return this.IsLogLevelEnabled(LogLevel.Debug); }
+            get { return IsLogLevelEnabled(LogLevel.Debug); }
         }
 
         public virtual void Debug(object message)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Debug))
+            if (IsLogLevelEnabled(LogLevel.Debug))
             {
-                this.WriteMessageToLog(LogLevel.Debug, message);
+                WriteMessageToLog(LogLevel.Debug, message);
             }
         }
 
-        public virtual void Debug(Exception exception, object message)
+        public virtual void Debug(Exception exception, object message = null)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Debug))
+            if (IsLogLevelEnabled(LogLevel.Debug))
             {
-                this.WriteMessageToLog(LogLevel.Debug, message, exception);
+                WriteMessageToLog(LogLevel.Debug, message, exception);
             }
         }
 
         public virtual void DebugFormat(string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Debug))
+            if (IsLogLevelEnabled(LogLevel.Debug))
             {
-                this.WriteMessageToLog(LogLevel.Debug, String.Format(CultureInfo.InvariantCulture, format, args));
+                WriteMessageToLog(LogLevel.Debug, String.Format(CultureInfo.InvariantCulture, format, args));
             }
         }
 
         public virtual void DebugFormat(Exception exception, string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Debug))
+            if (IsLogLevelEnabled(LogLevel.Debug))
             {
-                this.WriteMessageToLog(LogLevel.Debug, String.Format(CultureInfo.InvariantCulture, format, args), exception);
+                WriteMessageToLog(LogLevel.Debug, String.Format(CultureInfo.InvariantCulture, format, args), exception);
             }
         }
 
-        public virtual void TryDebug(object message)
+        public virtual bool TryDebug(object message)
         {
             try
             {
-                this.Debug(message);
+                Debug(message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryDebug(Exception exception, object message)
+        public virtual bool TryDebug(Exception exception, object message = null)
         {
             try
             {
-                this.Debug(exception, message);
+                Debug(exception, message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryDebugFormat(string format, params object[] args)
+        public virtual bool TryDebugFormat(string format, params object[] args)
         {
             try
             {
-                this.DebugFormat(format, args);
+                DebugFormat(format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryDebugFormat(Exception exception, string format, params object[] args)
+        public virtual bool TryDebugFormat(Exception exception, string format, params object[] args)
         {
             try
             {
-                this.DebugFormat(exception, format, args);
+                DebugFormat(exception, format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
-        
+
         public virtual bool IsInfoEnabled
         {
-            get { return this.IsLogLevelEnabled(LogLevel.Info); }
+            get { return IsLogLevelEnabled(LogLevel.Info); }
         }
 
         public virtual void Info(object message)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Info))
+            if (IsLogLevelEnabled(LogLevel.Info))
             {
-                this.WriteMessageToLog(LogLevel.Info, message);
+                WriteMessageToLog(LogLevel.Info, message);
             }
         }
 
-        public virtual void Info(Exception exception, object message)
+        public virtual void Info(Exception exception, object message = null)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Info))
+            if (IsLogLevelEnabled(LogLevel.Info))
             {
-                this.WriteMessageToLog(LogLevel.Info, message, exception);
+                WriteMessageToLog(LogLevel.Info, message, exception);
             }
         }
 
         public virtual void InfoFormat(string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Info))
+            if (IsLogLevelEnabled(LogLevel.Info))
             {
-                this.WriteMessageToLog(LogLevel.Info, String.Format(CultureInfo.InvariantCulture, format, args));
+                WriteMessageToLog(LogLevel.Info, String.Format(CultureInfo.InvariantCulture, format, args));
             }
         }
 
         public virtual void InfoFormat(Exception exception, string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Info))
+            if (IsLogLevelEnabled(LogLevel.Info))
             {
-                this.WriteMessageToLog(LogLevel.Info, String.Format(CultureInfo.InvariantCulture, format, args), exception);
+                WriteMessageToLog(LogLevel.Info, String.Format(CultureInfo.InvariantCulture, format, args), exception);
             }
         }
 
-        public virtual void TryInfo(object message)
+        public virtual bool TryInfo(object message)
         {
             try
             {
-                this.Info(message);
+                Info(message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryInfo(Exception exception, object message)
+        public virtual bool TryInfo(Exception exception, object message = null)
         {
             try
             {
-                this.Info(exception, message);
+                Info(exception, message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryInfoFormat(string format, params object[] args)
+        public virtual bool TryInfoFormat(string format, params object[] args)
         {
             try
             {
-                this.InfoFormat(format, args);
+                InfoFormat(format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryInfoFormat(Exception exception, string format, params object[] args)
+        public virtual bool TryInfoFormat(Exception exception, string format, params object[] args)
         {
             try
             {
-                this.InfoFormat(exception, format, args);
+                InfoFormat(exception, format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
         public virtual bool IsWarnEnabled
         {
-            get { return this.IsLogLevelEnabled(LogLevel.Warn); }
+            get { return IsLogLevelEnabled(LogLevel.Warn); }
         }
 
         public virtual void Warn(object message)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Warn))
+            if (IsLogLevelEnabled(LogLevel.Warn))
             {
-                this.WriteMessageToLog(LogLevel.Warn, message);
+                WriteMessageToLog(LogLevel.Warn, message);
             }
         }
 
-        public virtual void Warn(Exception exception, object message)
+        public virtual void Warn(Exception exception, object message = null)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Warn))
+            if (IsLogLevelEnabled(LogLevel.Warn))
             {
-                this.WriteMessageToLog(LogLevel.Warn, message, exception);
+                WriteMessageToLog(LogLevel.Warn, message, exception);
             }
         }
 
         public virtual void WarnFormat(string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Warn))
+            if (IsLogLevelEnabled(LogLevel.Warn))
             {
-                this.WriteMessageToLog(LogLevel.Warn, String.Format(CultureInfo.InvariantCulture, format, args));
+                WriteMessageToLog(LogLevel.Warn, String.Format(CultureInfo.InvariantCulture, format, args));
             }
         }
 
         public virtual void WarnFormat(Exception exception, string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Warn))
+            if (IsLogLevelEnabled(LogLevel.Warn))
             {
-                this.WriteMessageToLog(LogLevel.Warn, String.Format(CultureInfo.InvariantCulture, format, args), exception);
+                WriteMessageToLog(LogLevel.Warn, String.Format(CultureInfo.InvariantCulture, format, args), exception);
             }
         }
 
-        public virtual void TryWarn(object message)
+        public virtual bool TryWarn(object message)
         {
             try
             {
-                this.Warn(message);
+                Warn(message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryWarn(Exception exception, object message)
+        public virtual bool TryWarn(Exception exception, object message = null)
         {
             try
             {
-                this.Warn(exception, message);
+                Warn(exception, message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryWarnFormat(string format, params object[] args)
+        public virtual bool TryWarnFormat(string format, params object[] args)
         {
             try
             {
-                this.WarnFormat(format, args);
+                WarnFormat(format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryWarnFormat(Exception exception, string format, params object[] args)
+        public virtual bool TryWarnFormat(Exception exception, string format, params object[] args)
         {
             try
             {
-                this.WarnFormat(exception, format, args);
+                WarnFormat(exception, format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
         public virtual bool IsErrorEnabled
         {
-            get { return this.IsLogLevelEnabled(LogLevel.Error); }
+            get { return IsLogLevelEnabled(LogLevel.Error); }
         }
 
         public virtual void Error(object message)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Error))
+            if (IsLogLevelEnabled(LogLevel.Error))
             {
-                this.WriteMessageToLog(LogLevel.Error, message);
+                WriteMessageToLog(LogLevel.Error, message);
             }
         }
 
-        public virtual void Error(Exception exception, object message)
+        public virtual void Error(Exception exception, object message = null)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Error))
+            if (IsLogLevelEnabled(LogLevel.Error))
             {
-                this.WriteMessageToLog(LogLevel.Error, message, exception);
+                WriteMessageToLog(LogLevel.Error, message, exception);
             }
         }
 
         public virtual void ErrorFormat(string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Error))
+            if (IsLogLevelEnabled(LogLevel.Error))
             {
-                this.WriteMessageToLog(LogLevel.Error, String.Format(CultureInfo.InvariantCulture, format, args));
+                WriteMessageToLog(LogLevel.Error, String.Format(CultureInfo.InvariantCulture, format, args));
             }
         }
 
         public virtual void ErrorFormat(Exception exception, string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Error))
+            if (IsLogLevelEnabled(LogLevel.Error))
             {
-                this.WriteMessageToLog(LogLevel.Error, String.Format(CultureInfo.InvariantCulture, format, args), exception);
+                WriteMessageToLog(LogLevel.Error, String.Format(CultureInfo.InvariantCulture, format, args), exception);
             }
         }
 
-        public virtual void TryError(object message)
+        public virtual bool TryError(object message)
         {
             try
             {
-                this.Error(message);
+                Error(message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryError(Exception exception, object message)
+        public virtual bool TryError(Exception exception, object message = null)
         {
             try
             {
-                this.Error(exception, message);
+                Error(exception, message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryErrorFormat(string format, params object[] args)
+        public virtual bool TryErrorFormat(string format, params object[] args)
         {
             try
             {
-                this.ErrorFormat(format, args);
+                ErrorFormat(format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryErrorFormat(Exception exception, string format, params object[] args)
+        public virtual bool TryErrorFormat(Exception exception, string format, params object[] args)
         {
             try
             {
-                this.ErrorFormat(exception, format, args);
+                ErrorFormat(exception, format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
         public virtual bool IsFatalEnabled
         {
-            get { return this.IsLogLevelEnabled(LogLevel.Fatal); }
+            get { return IsLogLevelEnabled(LogLevel.Fatal); }
         }
 
         public virtual void Fatal(object message)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Fatal))
+            if (IsLogLevelEnabled(LogLevel.Fatal))
             {
-                this.WriteMessageToLog(LogLevel.Fatal, message);
+                WriteMessageToLog(LogLevel.Fatal, message);
             }
         }
 
-        public virtual void Fatal(Exception exception, object message)
+        public virtual void Fatal(Exception exception, object message = null)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Fatal))
+            if (IsLogLevelEnabled(LogLevel.Fatal))
             {
-                this.WriteMessageToLog(LogLevel.Fatal, message, exception);
+                WriteMessageToLog(LogLevel.Fatal, message, exception);
             }
         }
 
         public virtual void FatalFormat(string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Fatal))
+            if (IsLogLevelEnabled(LogLevel.Fatal))
             {
-                this.WriteMessageToLog(LogLevel.Fatal, String.Format(CultureInfo.InvariantCulture, format, args));
+                WriteMessageToLog(LogLevel.Fatal, String.Format(CultureInfo.InvariantCulture, format, args));
             }
         }
 
         public virtual void FatalFormat(Exception exception, string format, params object[] args)
         {
-            if (this.IsLogLevelEnabled(LogLevel.Fatal))
+            if (IsLogLevelEnabled(LogLevel.Fatal))
             {
-                this.WriteMessageToLog(LogLevel.Fatal, String.Format(CultureInfo.InvariantCulture, format, args), exception);
+                WriteMessageToLog(LogLevel.Fatal, String.Format(CultureInfo.InvariantCulture, format, args), exception);
             }
         }
 
-        public virtual void TryFatal(object message)
+        public virtual bool TryFatal(object message)
         {
             try
             {
-                this.Fatal(message);
+                Fatal(message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryFatal(Exception exception, object message)
+        public virtual bool TryFatal(Exception exception, object message = null)
         {
             try
             {
-                this.Fatal(exception, message);
+                Fatal(exception, message);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryFatalFormat(string format, params object[] args)
+        public virtual bool TryFatalFormat(string format, params object[] args)
         {
             try
             {
-                this.FatalFormat(format, args);
+                FatalFormat(format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }
 
-        public virtual void TryFatalFormat(Exception exception, string format, params object[] args)
+        public virtual bool TryFatalFormat(Exception exception, string format, params object[] args)
         {
             try
             {
-                this.FatalFormat(exception, format, args);
+                FatalFormat(exception, format, args);
+                return true;
             }
             // ReSharper disable once EmptyGeneralCatchClause
             catch
             {
+                return false;
                 // yes, this is correct- we are eating any exceptions in the Try methods
             }
         }

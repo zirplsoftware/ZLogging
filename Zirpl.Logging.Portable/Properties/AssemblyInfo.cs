@@ -40,3 +40,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("1.0")]
 
 [assembly: InternalsVisibleTo("Zirpl.Logging.Tests")]
+[assembly: InternalsVisibleTo("Zirpl.Logging.Log4Net")]

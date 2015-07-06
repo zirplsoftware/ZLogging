@@ -1,29 +1,29 @@
 ﻿using System;
 using log4net.Config;
+using Zirpl.Logging.Log4Net.Common;
 
-namespace Zirpl.Logging.Log4Net.Common
+namespace Zirpl.Logging.Log4Net
 {
     /// <summary>
-    /// An ILogFactory implementation that creates ILog using Common.Logging 
-    /// Logger backings
+    /// An ILogFactory implementation that creates ILogs
     /// </summary>
-    public sealed class CommonLogFactory : ILogFactory
+    public sealed class LogFactory : ILogFactory
     {
         private static Boolean _initialized;
 
         /// <summary>
         /// Initializes the LogManager
         /// </summary>
-        internal CommonLogFactory()
+        internal LogFactory()
         {
             if (!log4net.LogManager.GetRepository().Configured)
             {
                 XmlConfigurator.Configure();
-                LogManager.GetLog<CommonLogFactory>().DebugFormat("Loaded log4net config.");
+                LogManager.GetLog<LogFactory>().DebugFormat("Loaded log4net config.");
             }
             else
             {
-                LogManager.GetLog<CommonLogFactory>().DebugFormat("log4net already configured.");
+                LogManager.GetLog<LogFactory>().DebugFormat("log4net already configured.");
             }
         }
 
@@ -32,19 +32,18 @@ namespace Zirpl.Logging.Log4Net.Common
         /// </summary>
         public static void Initialize()
         {
-            if (!_initialized)
-            {
-                LogManager.LogFactory = new CommonLogFactory();
-                _initialized = true;
-            }
+            if (_initialized) return;
+            LogManager.LogFactory = new LogFactory();
+            _initialized = true;
         }
 
         public ILog GetLog(string name)
         {
             if (!_initialized)
+            {
                 return new NullLog();
-            else
-                return new CommonLogWrapper(global::Common.Logging.LogManager.GetLogger(name));
+            }
+            return new LogWrapper(name);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Zirpl.Logging
         /// Gets/Sets the <see cref="ILogFactory"/> to use to create <see cref="ILog"/>s
         /// </summary>
         public static ILogFactory LogFactory { get; set; }
-        
+
         /// <summary>
         /// Gets the default Log
         /// </summary>

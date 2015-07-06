@@ -51,8 +51,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CommonLogFactory.cs" />
-    <Compile Include="Common\CommonLogWrapper.cs" />
+    <Compile Include="LogFactory.cs" />
+    <Compile Include="Common\LogWrapper.cs" />
     <Compile Include="AsyncForwardingAppender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
