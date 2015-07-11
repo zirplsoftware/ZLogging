@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Zirpl.Logging.Common</id>
+    <id>Zirpl.CommonLogging</id>
     <version>$version$</version>
     <title>Zirpl CommonLogging</title>
     <authors>Zirpl Software</authors>
