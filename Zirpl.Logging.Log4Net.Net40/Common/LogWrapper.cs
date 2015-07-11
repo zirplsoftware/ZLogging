@@ -1,41 +1,15 @@
 ﻿using System;
-using System.Reflection;
 
-namespace Zirpl.Logging.Log4Net.Common
+namespace Zirpl.Logging.Common
 {
     internal sealed class LogWrapper :LogBase
     {
-        private static readonly FieldInfo DeclaringTypeFieldInfo;
-        private static readonly Type NewDeclaringType;
         private readonly global::Common.Logging.ILog _log;
-
-        static LogWrapper()
+        
+        internal LogWrapper(global::Common.Logging.ILog log)
         {
-            // this is to ensure that locationInfo is correct
-            //
-            DeclaringTypeFieldInfo = typeof(global::Common.Logging.Log4Net.Log4NetLogger)
-                .GetField("declaringType", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static);
-            NewDeclaringType = typeof (LogWrapper);
-        }
-
-        internal LogWrapper(String name)
-        {
-            var log = global::Common.Logging.LogManager.GetLogger(name);
             this._log = log;
-
-            // this ensures that locationinfo is correct
-            //
-            if (log is global::Common.Logging.Log4Net.Log4NetLogger)
-            {
-                // take a look at static constructor for Log4NetLogger in Reflector.
-                // that field is passed to log4net logger telling it where to start
-                // looking for stack info.
-                // we are changing that here to make sure it starts one level higher up
-                //
-                DeclaringTypeFieldInfo.SetValue(log, NewDeclaringType);
-            }
         }
-
 
         protected override void WriteMessageToLog(LogLevel logLevel, object message, Exception exception = null)
         {
