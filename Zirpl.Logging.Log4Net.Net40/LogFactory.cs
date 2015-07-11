@@ -37,6 +37,7 @@ namespace Zirpl.Logging.Log4Net
             _initialized = true;
         }
 
+        /// <inheritdoc/>
         public ILog GetLog(string name)
         {
             if (!_initialized)

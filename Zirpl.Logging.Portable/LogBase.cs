@@ -54,11 +54,13 @@ namespace Zirpl.Logging
         /// <returns>True if the level is enabled, otherwise false</returns>
         protected abstract bool IsLogLevelEnabled(LogLevel logLevel);
 
+        /// <inheritdoc/>
         public virtual bool IsTraceEnabled
         {
             get { return IsLogLevelEnabled(LogLevel.Trace); }
         }
 
+        /// <inheritdoc/>
         public virtual void Trace(object message)
         {
             if (IsLogLevelEnabled(LogLevel.Trace))
@@ -67,6 +69,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void Trace(Exception exception, object message = null)
         {
             if (IsLogLevelEnabled(LogLevel.Trace))
@@ -75,6 +78,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void TraceFormat(string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Trace))
@@ -83,6 +87,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void TraceFormat(Exception exception, string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Trace))
@@ -91,6 +96,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryTrace(object message)
         {
             try
@@ -106,6 +112,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryTrace(Exception exception, object message = null)
         {
             try
@@ -121,6 +128,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryTraceFormat(string format, params object[] args)
         {
             try
@@ -136,6 +144,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryTraceFormat(Exception exception, string format, params object[] args)
         {
             try
@@ -155,12 +164,13 @@ namespace Zirpl.Logging
 
 
 
-
+        /// <inheritdoc/>
         public virtual bool IsDebugEnabled
         {
             get { return IsLogLevelEnabled(LogLevel.Debug); }
         }
 
+        /// <inheritdoc/>
         public virtual void Debug(object message)
         {
             if (IsLogLevelEnabled(LogLevel.Debug))
@@ -169,6 +179,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void Debug(Exception exception, object message = null)
         {
             if (IsLogLevelEnabled(LogLevel.Debug))
@@ -177,6 +188,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void DebugFormat(string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Debug))
@@ -185,6 +197,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void DebugFormat(Exception exception, string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Debug))
@@ -193,6 +206,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryDebug(object message)
         {
             try
@@ -208,6 +222,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryDebug(Exception exception, object message = null)
         {
             try
@@ -223,6 +238,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryDebugFormat(string format, params object[] args)
         {
             try
@@ -238,6 +254,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryDebugFormat(Exception exception, string format, params object[] args)
         {
             try
@@ -253,11 +270,13 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool IsInfoEnabled
         {
             get { return IsLogLevelEnabled(LogLevel.Info); }
         }
 
+        /// <inheritdoc/>
         public virtual void Info(object message)
         {
             if (IsLogLevelEnabled(LogLevel.Info))
@@ -266,6 +285,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void Info(Exception exception, object message = null)
         {
             if (IsLogLevelEnabled(LogLevel.Info))
@@ -274,6 +294,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void InfoFormat(string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Info))
@@ -282,6 +303,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void InfoFormat(Exception exception, string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Info))
@@ -290,6 +312,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryInfo(object message)
         {
             try
@@ -305,6 +328,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryInfo(Exception exception, object message = null)
         {
             try
@@ -320,6 +344,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryInfoFormat(string format, params object[] args)
         {
             try
@@ -335,6 +360,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryInfoFormat(Exception exception, string format, params object[] args)
         {
             try
@@ -350,11 +376,13 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool IsWarnEnabled
         {
             get { return IsLogLevelEnabled(LogLevel.Warn); }
         }
 
+        /// <inheritdoc/>
         public virtual void Warn(object message)
         {
             if (IsLogLevelEnabled(LogLevel.Warn))
@@ -363,6 +391,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void Warn(Exception exception, object message = null)
         {
             if (IsLogLevelEnabled(LogLevel.Warn))
@@ -371,6 +400,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void WarnFormat(string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Warn))
@@ -379,6 +409,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void WarnFormat(Exception exception, string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Warn))
@@ -387,6 +418,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryWarn(object message)
         {
             try
@@ -402,6 +434,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryWarn(Exception exception, object message = null)
         {
             try
@@ -417,6 +450,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryWarnFormat(string format, params object[] args)
         {
             try
@@ -432,6 +466,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryWarnFormat(Exception exception, string format, params object[] args)
         {
             try
@@ -447,11 +482,13 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool IsErrorEnabled
         {
             get { return IsLogLevelEnabled(LogLevel.Error); }
         }
 
+        /// <inheritdoc/>
         public virtual void Error(object message)
         {
             if (IsLogLevelEnabled(LogLevel.Error))
@@ -460,6 +497,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void Error(Exception exception, object message = null)
         {
             if (IsLogLevelEnabled(LogLevel.Error))
@@ -468,6 +506,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void ErrorFormat(string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Error))
@@ -476,6 +515,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void ErrorFormat(Exception exception, string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Error))
@@ -484,6 +524,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryError(object message)
         {
             try
@@ -499,6 +540,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryError(Exception exception, object message = null)
         {
             try
@@ -514,6 +556,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryErrorFormat(string format, params object[] args)
         {
             try
@@ -529,6 +572,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryErrorFormat(Exception exception, string format, params object[] args)
         {
             try
@@ -544,11 +588,13 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool IsFatalEnabled
         {
             get { return IsLogLevelEnabled(LogLevel.Fatal); }
         }
 
+        /// <inheritdoc/>
         public virtual void Fatal(object message)
         {
             if (IsLogLevelEnabled(LogLevel.Fatal))
@@ -557,6 +603,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void Fatal(Exception exception, object message = null)
         {
             if (IsLogLevelEnabled(LogLevel.Fatal))
@@ -565,6 +612,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void FatalFormat(string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Fatal))
@@ -573,6 +621,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual void FatalFormat(Exception exception, string format, params object[] args)
         {
             if (IsLogLevelEnabled(LogLevel.Fatal))
@@ -581,6 +630,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryFatal(object message)
         {
             try
@@ -596,6 +646,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryFatal(Exception exception, object message = null)
         {
             try
@@ -611,6 +662,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryFatalFormat(string format, params object[] args)
         {
             try
@@ -626,6 +678,7 @@ namespace Zirpl.Logging
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool TryFatalFormat(Exception exception, string format, params object[] args)
         {
             try

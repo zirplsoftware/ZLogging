@@ -18,11 +18,11 @@ namespace Zirpl.Logging.Log4Net
     public sealed class AsyncForwardingAppender : IAppender, IBulkAppender, IOptionHandler, IAppenderAttachable
     {
         private AppenderAttachedImpl _appenderAttachedImpl;
-        public string Name { get; set; }
 
-        /// <summary>
-        /// Flags passed to the LoggingEvent.Fix property
-        /// </summary>
+        /// <inheritdoc/>
+        public string Name { get; set; }
+        
+        /// <inheritdoc/>
         public FixFlags Fix { get; set; }
         
         /// <summary>
@@ -33,10 +33,12 @@ namespace Zirpl.Logging.Log4Net
             Fix = FixFlags.All;
         }
 
+        /// <inheritdoc/>
         public void ActivateOptions()
         {
         }
-        
+
+        /// <inheritdoc/>
         public void Close()
         {
             // Remove all the attached appenders
@@ -49,12 +51,14 @@ namespace Zirpl.Logging.Log4Net
             }
         }
 
+        /// <inheritdoc/>
         public void DoAppend(LoggingEvent loggingEvent)
         {
             loggingEvent.Fix = Fix;
             ThreadPool.QueueUserWorkItem(new WaitCallback(AsyncAppend), loggingEvent);
         }
 
+        /// <inheritdoc/>
         public void DoAppend(LoggingEvent[] loggingEvents)
         {
             foreach (LoggingEvent loggingEvent in loggingEvents)
@@ -86,6 +90,7 @@ namespace Zirpl.Logging.Log4Net
 
         #region IAppenderAttachable Members
 
+        /// <inheritdoc/>
         public void AddAppender(IAppender newAppender)
         {
             if (newAppender == null) throw new ArgumentNullException("newAppender");
@@ -100,6 +105,7 @@ namespace Zirpl.Logging.Log4Net
             }
         }
 
+        /// <inheritdoc/>
         public AppenderCollection Appenders
         {
             get
@@ -118,6 +124,7 @@ namespace Zirpl.Logging.Log4Net
             }
         }
 
+        /// <inheritdoc/>
         public IAppender GetAppender(string name)
         {
             lock (this)
@@ -132,6 +139,7 @@ namespace Zirpl.Logging.Log4Net
             }
         }
 
+        /// <inheritdoc/>
         public void RemoveAllAppenders()
         {
             lock (this)
@@ -144,6 +152,7 @@ namespace Zirpl.Logging.Log4Net
             }
         }
 
+        /// <inheritdoc/>
         public IAppender RemoveAppender(IAppender appender)
         {
             lock (this)
@@ -157,6 +166,7 @@ namespace Zirpl.Logging.Log4Net
             return null;
         }
 
+        /// <inheritdoc/>
         public IAppender RemoveAppender(string name)
         {
             lock (this)
