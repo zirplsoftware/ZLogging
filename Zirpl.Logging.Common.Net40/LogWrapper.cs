@@ -2,11 +2,11 @@
 
 namespace Zirpl.Logging.Common
 {
-    internal sealed class LogWrapper :LogBase
+    public sealed class LogWrapper :LogBase
     {
         private readonly global::Common.Logging.ILog _log;
-        
-        internal LogWrapper(global::Common.Logging.ILog log)
+
+        public LogWrapper(global::Common.Logging.ILog log)
         {
             this._log = log;
         }

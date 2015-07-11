@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Zirpl.Logging.Common</id>
+    <version>$version$</version>
+    <title>ZLogging- Common</title>
+    <authors>Zirpl Software</authors>
+    <owners>Zirpl Software</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extends Zirpl's Logging framework with functionality wrappering Common.Logging</description>
+    <language>en-US</language>
+    <copyright>Copyright 2015</copyright>
+    <tags></tags>
+    <projectUrl>https://github.com/zirplsoftware/ZLogging</projectUrl>
+    <licenseUrl>https://github.com/zirplsoftware/ZLogging/blob/master/LICENSE</licenseUrl>
+    <releaseNotes>
+      <![CDATA[
+            For full release notes see https://github.com/zirplsoftware/ZLogging/blob/master/releasenotes.md
+            ]]>
+    </releaseNotes>
+    <dependencies>
+      <dependency id="Common.Logging.Core" version="3.2.0" />
+      <dependency id="Zirpl.Logging" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Zirpl.Logging.Common.Net40\bin\$configuration$\Zirpl.Logging.Common.dll" target="lib\net40\" />
+    <file src="..\Zirpl.Logging.Common.Net40\bin\$configuration$\Zirpl.Logging.Common.XML" target="lib\net40\" />
+    <file src="..\Zirpl.Logging.Common.Net40Client\bin\$configuration$\Zirpl.Logging.Common.dll" target="lib\net40-client\" />
+    <file src="..\Zirpl.Logging.Common.Net40Client\bin\$configuration$\Zirpl.Logging.Common.XML" target="lib\net40-client\" />
+  </files>
+</package>

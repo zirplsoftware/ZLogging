@@ -7,7 +7,7 @@
     <ProjectGuid>{DA6C5586-5F68-443F-9138-37366CF0E051}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zirpl.Logging</RootNamespace>
+    <RootNamespace>Zirpl.Logging.Log4Net</RootNamespace>
     <AssemblyName>Zirpl.Logging.Log4Net</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -35,14 +35,17 @@
     <DocumentationFile>bin\Release\Zirpl.Logging.Log4Net.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging">
-      <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.3.2.0\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Core">
-      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.Core.3.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging.Log4Net1213">
-      <HintPath>..\packages\Common.Logging.Log4Net1213.3.0.0\lib\net40\Common.Logging.Log4Net1213.dll</HintPath>
+    <Reference Include="Common.Logging.Log4Net1213, Version=3.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.Log4Net1213.3.2.0\lib\net40\Common.Logging.Log4Net1213.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
@@ -51,12 +54,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Log4Net\LogFactory.cs" />
-    <Compile Include="Common\LogWrapper.cs" />
-    <Compile Include="Log4Net\AsyncForwardingAppender.cs" />
+    <Compile Include="LogFactory.cs" />
+    <Compile Include="AsyncForwardingAppender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zirpl.Logging.Common.Net40\Zirpl.Logging.Common.Net40.csproj">
+      <Project>{01665016-0aa6-4567-ad37-4e4d99ab91b4}</Project>
+      <Name>Zirpl.Logging.Common.Net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zirpl.Logging.Portable\Zirpl.Logging.Portable.csproj">
       <Project>{d11a701f-a003-4703-9232-1aa787fe3f0c}</Project>
       <Name>Zirpl.Logging.Portable</Name>

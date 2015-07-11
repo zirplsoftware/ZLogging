@@ -3,7 +3,7 @@
   <metadata>
     <id>Zirpl.Logging.Log4Net</id>
     <version>$version$</version>
-    <title>Logging- Log4Net</title>
+    <title>ZLogging- Log4Net</title>
     <authors>Zirpl Software</authors>
     <owners>Zirpl Software</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -19,11 +19,12 @@
             ]]>
     </releaseNotes>
     <dependencies>
-      <dependency id="Common.Logging" version="3.0.0" />
-      <dependency id="Common.Logging.Core" version="3.0.0" />
-      <dependency id="Common.Logging.Log4Net1213" version="3.0.0" />
+      <dependency id="Common.Logging" version="3.2.0" />
+      <dependency id="Common.Logging.Core" version="3.2.0" />
+      <dependency id="Common.Logging.Log4Net1213" version="3.2.0" />
       <dependency id="log4net" version="2.0.3" />
       <dependency id="Zirpl.Logging" version="$version$" />
+      <dependency id="Zirpl.Logging.Common" version="$version$" />
     </dependencies>
   </metadata>
   <files>
