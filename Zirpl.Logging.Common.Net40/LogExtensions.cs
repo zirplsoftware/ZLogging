@@ -7,7 +7,7 @@ namespace Zirpl.Logging.Common
     /// <summary>
     /// Provides additional methods off the ILog interface
     /// </summary>
-    public static class ILogExtensions
+    public static class LogExtensions
     {
         #region Debug methods
 

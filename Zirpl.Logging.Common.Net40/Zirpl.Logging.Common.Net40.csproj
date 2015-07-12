@@ -34,6 +34,9 @@
     <DocumentationFile>bin\Release\Zirpl.Logging.Common.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging.Core">
       <HintPath>..\packages\Common.Logging.Core.3.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
@@ -41,14 +44,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LogWrapper.cs" />
+    <Compile Include="LogExtensions.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Zirpl.Logging.Portable\Zirpl.Logging.Portable.csproj">
-      <Project>{d11a701f-a003-4703-9232-1aa787fe3f0c}</Project>
-      <Name>Zirpl.Logging.Portable</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

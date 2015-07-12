@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{6E
 		releasenotes.md = releasenotes.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Portable", "Zirpl.Logging.Portable\Zirpl.Logging.Portable.csproj", "{D11A701F-A003-4703-9232-1AA787FE3F0C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Log4Net.Net40", "Zirpl.Logging.Log4Net.Net40\Zirpl.Logging.Log4Net.Net40.csproj", "{DA6C5586-5F68-443F-9138-37366CF0E051}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{64467B0B-D6DB-4C06-B3DA-36434220072C}"
@@ -19,10 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{64467B
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\Zirpl.CommonLogging.nuspec = .nuget\Zirpl.CommonLogging.nuspec
 		.nuget\Zirpl.Logging.Common.nuspec = .nuget\Zirpl.Logging.Common.nuspec
 		.nuget\Zirpl.Logging.Log4Net.nuspec = .nuget\Zirpl.Logging.Log4Net.nuspec
-		.nuget\Zirpl.Logging.nuspec = .nuget\Zirpl.Logging.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Log4Net.Net40Client", "Zirpl.Logging.Log4Net.Net40Client\Zirpl.Logging.Log4Net.Net40Client.csproj", "{3751B438-F98E-4FBE-98E7-9DC0904743C6}"
@@ -33,20 +29,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Common.Net40"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Common.Net40Client", "Zirpl.Logging.Common.Net40Client\Zirpl.Logging.Common.Net40Client.csproj", "{08439795-DB54-49E8-B22E-0706BF5C1934}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.CommonLogging.Net40", "Zirpl.CommonLogging.Net40\Zirpl.CommonLogging.Net40.csproj", "{B85CD1F7-5474-4CCB-8CB2-DE9C84408937}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.CommonLogging.Net40Client", "Zirpl.CommonLogging.Net40Client\Zirpl.CommonLogging.Net40Client.csproj", "{E391FDFA-5214-422E-A579-2CB4DD273162}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D11A701F-A003-4703-9232-1AA787FE3F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D11A701F-A003-4703-9232-1AA787FE3F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D11A701F-A003-4703-9232-1AA787FE3F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D11A701F-A003-4703-9232-1AA787FE3F0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA6C5586-5F68-443F-9138-37366CF0E051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA6C5586-5F68-443F-9138-37366CF0E051}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA6C5586-5F68-443F-9138-37366CF0E051}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,14 +51,6 @@ Global
 		{08439795-DB54-49E8-B22E-0706BF5C1934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08439795-DB54-49E8-B22E-0706BF5C1934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08439795-DB54-49E8-B22E-0706BF5C1934}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B85CD1F7-5474-4CCB-8CB2-DE9C84408937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B85CD1F7-5474-4CCB-8CB2-DE9C84408937}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B85CD1F7-5474-4CCB-8CB2-DE9C84408937}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B85CD1F7-5474-4CCB-8CB2-DE9C84408937}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E391FDFA-5214-422E-A579-2CB4DD273162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E391FDFA-5214-422E-A579-2CB4DD273162}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E391FDFA-5214-422E-A579-2CB4DD273162}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E391FDFA-5214-422E-A579-2CB4DD273162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,7 +58,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3751B438-F98E-4FBE-98E7-9DC0904743C6} = {712CC044-7465-43EC-9759-5C42B8D17611}
 		{08439795-DB54-49E8-B22E-0706BF5C1934} = {712CC044-7465-43EC-9759-5C42B8D17611}
-		{E391FDFA-5214-422E-A579-2CB4DD273162} = {712CC044-7465-43EC-9759-5C42B8D17611}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

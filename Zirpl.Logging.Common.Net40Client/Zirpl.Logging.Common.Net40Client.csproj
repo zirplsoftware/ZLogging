@@ -35,6 +35,9 @@
     <DocumentationFile>bin\Release\Zirpl.Logging.Common.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging.Core">
       <HintPath>..\packages\Common.Logging.Core.3.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
@@ -42,16 +45,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Zirpl.Logging.Common.Net40\LogWrapper.cs">
-      <Link>LogWrapper.cs</Link>
+    <Compile Include="..\Zirpl.Logging.Common.Net40\LogExtensions.cs">
+      <Link>LogExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.Logging.Common.Net40\LogManager.cs">
+      <Link>LogManager.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Zirpl.Logging.Portable\Zirpl.Logging.Portable.csproj">
-      <Project>{d11a701f-a003-4703-9232-1aa787fe3f0c}</Project>
-      <Name>Zirpl.Logging.Portable</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -66,7 +66,7 @@
   </Target>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="01665016-0aa6-4567-ad37-4e4d99ab91b4" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="01665016-0aa6-4567-ad37-4e4d99ab91b4" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

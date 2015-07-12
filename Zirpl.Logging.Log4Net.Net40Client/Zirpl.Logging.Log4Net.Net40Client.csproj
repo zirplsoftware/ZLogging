@@ -59,10 +59,6 @@
       <Project>{08439795-db54-49e8-b22e-0706bf5c1934}</Project>
       <Name>Zirpl.Logging.Common.Net40Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zirpl.Logging.Portable\Zirpl.Logging.Portable.csproj">
-      <Project>{d11a701f-a003-4703-9232-1aa787fe3f0c}</Project>
-      <Name>Zirpl.Logging.Portable</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -70,9 +66,6 @@
   <ItemGroup>
     <Compile Include="..\Zirpl.Logging.Log4Net.Net40\AsyncForwardingAppender.cs">
       <Link>AsyncForwardingAppender.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.Logging.Log4Net.Net40\LogFactory.cs">
-      <Link>LogFactory.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.Logging.Log4Net.Net40\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
@@ -89,7 +82,7 @@
   </Target>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="da6c5586-5f68-443f-9138-37366cf0e051" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="da6c5586-5f68-443f-9138-37366cf0e051" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
