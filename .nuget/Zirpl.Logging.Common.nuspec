@@ -19,8 +19,8 @@
             ]]>
     </releaseNotes>
     <dependencies>
+      <dependency id="Common.Logging" version="3.2.0" />
       <dependency id="Common.Logging.Core" version="3.2.0" />
-      <dependency id="Zirpl.Logging" version="$version$" />
     </dependencies>
   </metadata>
   <files>

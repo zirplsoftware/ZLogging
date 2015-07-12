@@ -19,12 +19,7 @@
             ]]>
     </releaseNotes>
     <dependencies>
-      <dependency id="Common.Logging" version="3.2.0" />
-      <dependency id="Common.Logging.Core" version="3.2.0" />
-      <dependency id="Common.Logging.Log4Net1213" version="3.2.0" />
       <dependency id="log4net" version="2.0.3" />
-      <dependency id="Zirpl.Logging" version="$version$" />
-      <dependency id="Zirpl.Logging.Common" version="$version$" />
     </dependencies>
   </metadata>
   <files>
