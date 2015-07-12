@@ -46,12 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zirpl.Logging.Common.Net40\Zirpl.Logging.Common.Net40.csproj">
-      <Project>{01665016-0aa6-4567-ad37-4e4d99ab91b4}</Project>
-      <Name>Zirpl.Logging.Common.Net40</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

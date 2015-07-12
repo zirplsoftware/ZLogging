@@ -29,6 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Common.Net40"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Common.Net40Client", "Zirpl.Logging.Common.Net40Client\Zirpl.Logging.Common.Net40Client.csproj", "{08439795-DB54-49E8-B22E-0706BF5C1934}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code To Integrate Later", "Code To Integrate Later", "{6503AAF4-DCA5-4EFA-ACE1-351063FA1A14}"
+	ProjectSection(SolutionItems) = preProject
+		Code To Integrate Later\StackTraceLayoutRenderer.cs = Code To Integrate Later\StackTraceLayoutRenderer.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
