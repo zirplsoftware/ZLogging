@@ -244,11 +244,6 @@ namespace Zirpl.Logging.Common
 
         #endregion
 
-
-
-
-
-
         #region Error methods
 
         /// <summary>
@@ -483,11 +478,6 @@ namespace Zirpl.Logging.Common
         }
 
         #endregion
-
-
-
-
-
 
         #region Fatal methods
 
@@ -958,9 +948,6 @@ namespace Zirpl.Logging.Common
         }
 
         #endregion
-
-
-
 
         #region Trace methods
 

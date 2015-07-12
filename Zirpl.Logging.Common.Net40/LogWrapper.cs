@@ -2,15 +2,28 @@
 
 namespace Zirpl.Logging.Common
 {
+    /// <summary>
+    /// Wraps a Common.Logging.ILog in a Zirpl.Logging.ILog
+    /// </summary>
     public sealed class LogWrapper :LogBase
     {
         private readonly global::Common.Logging.ILog _log;
 
+        /// <summary>
+        /// Creates a new LogWrapper
+        /// </summary>
+        /// <param name="log">The Common.Logging.ILog to wrap</param>
         public LogWrapper(global::Common.Logging.ILog log)
         {
             this._log = log;
         }
 
+        /// <summary>
+        /// Logs the message at the specified LogLevel
+        /// </summary>
+        /// <param name="logLevel">The LogLevel at which to log the message</param>
+        /// <param name="message">The log message</param>
+        /// <param name="exception">An optional exception</param>
         protected override void WriteMessageToLog(LogLevel logLevel, object message, Exception exception = null)
         {
             switch (logLevel)
@@ -78,6 +91,11 @@ namespace Zirpl.Logging.Common
             }
         }
 
+        /// <summary>
+        /// Checks if the specified log level is enabled
+        /// </summary>
+        /// <param name="logLevel">The LogLevel to check</param>
+        /// <returns>True if the LogLevel is enabled, otherwise false</returns>
         protected override bool IsLogLevelEnabled(LogBase.LogLevel logLevel)
         {
             switch (logLevel)

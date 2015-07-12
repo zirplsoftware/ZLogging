@@ -7,7 +7,7 @@
     <ProjectGuid>{B85CD1F7-5474-4CCB-8CB2-DE9C84408937}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zirpl.CommonLogging</RootNamespace>
+    <RootNamespace>Zirpl.Logging.Common</RootNamespace>
     <AssemblyName>Zirpl.CommonLogging</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
