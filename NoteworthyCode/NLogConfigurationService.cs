@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Xml;
 using Common.Logging;
 
-namespace Numotion.Logging.NLog
+namespace Zirpl.Logging.NLog
 {
     /// <summary>
     /// Implementation of the ILogConfigurationService for NLog

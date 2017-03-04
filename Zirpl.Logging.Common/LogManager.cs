@@ -11,17 +11,6 @@ namespace Zirpl.Logging.Common
     /// </summary>
     public static class LogManager
     {
-        private static ILogConfigurationService _logConfigurationService;
-
-        /// <summary>
-        /// Initializes the LogManager with the provided ILogConfigurationService implementation
-        /// </summary>
-        /// <param name="logConfigurationService">The log configuration service</param>
-        public static void Initialize(ILogConfigurationService logConfigurationService)
-        {
-            _logConfigurationService = logConfigurationService;
-        }
-
         /// <summary>
         /// Gets the default Log
         /// </summary>
@@ -95,30 +84,6 @@ namespace Zirpl.Logging.Common
                                              t.GetGenericArguments()
                                               .Select(ToGenericTypeString).ToArray());
             return genericTypeName + "<" + genericArgs + ">";
-        }
-
-        /// <summary>
-        /// Sets the Min Log Level in the configuration file
-        /// </summary>
-        public static void SetMinLogLevel(string configurationFilePath, LogLevel logLevel)
-        {
-            _logConfigurationService.SetMinLogLevelOfAllLoggers(configurationFilePath, logLevel);
-        }
-
-        /// <summary>
-        /// Loads the configuration from file path specified
-        /// </summary>
-        public static void LoadConfigurationFile(string configurationFilePath)
-        {
-            _logConfigurationService.LoadConfigurationFile(configurationFilePath);
-        }
-
-        /// <summary>
-        /// Copies the default configuration file to the specified path
-        /// </summary>
-        public static void CopyDefaultConfigurationFile(string toFilePath)
-        {
-            _logConfigurationService.CopyDefaultConfigurationFile(toFilePath);
         }
 
         /// <summary>

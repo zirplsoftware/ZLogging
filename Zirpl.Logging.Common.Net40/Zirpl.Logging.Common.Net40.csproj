@@ -54,9 +54,6 @@
     <Compile Include="..\Zirpl.Logging.Common\ElapsedTimeTrace.cs">
       <Link>ElapsedTimeTrace.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.Logging.Common\ILogConfigurationService.cs">
-      <Link>ILogConfigurationService.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.Logging.Common\JsonSerializationUtilities.cs">
       <Link>JsonSerializationUtilities.cs</Link>
     </Compile>
@@ -86,7 +83,7 @@
   </Target>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="4bf24261-5a0a-4881-8806-5e034e071091" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="4bf24261-5a0a-4881-8806-5e034e071091" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
