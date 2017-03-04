@@ -148,9 +148,17 @@ namespace Zirpl.Logging.Common
         /// </code>
         /// </summary>
         /// <param name="owner">Owning object</param>
+#if NET40
+        /// <param name="traceName">Name of trace. Defaults to empty string</param>
+#else
         /// <param name="traceName">Name of trace. Defaults to the name of the calling method</param>
+#endif
         /// <param name="logStart">Whether or not to write the start of the trace to the log</param>
+#if NET40
+        public static IDisposable StartElapsedTimeTrace(this object owner, string traceName = "", bool logStart = false)
+#else
         public static IDisposable StartElapsedTimeTrace(this object owner, [CallerMemberName]string traceName = "", bool logStart = false)
+#endif
         {
             if (owner == null)
             {
@@ -173,9 +181,17 @@ namespace Zirpl.Logging.Common
         /// </code>
         /// </summary>
         /// <param name="ownerType">Owning type</param>
+#if NET40
+        /// <param name="traceName">Name of trace. Defaults to empty string</param>
+#else
         /// <param name="traceName">Name of trace. Defaults to the name of the calling method</param>
+#endif
         /// <param name="logStart">Whether or not to write the start of the trace to the log</param>
+#if NET40
+        public static IDisposable StartElapsedTimeTrace(Type ownerType, string traceName = "", bool logStart = false)
+#else
         public static IDisposable StartElapsedTimeTrace(Type ownerType, [CallerMemberName]string traceName = "", bool logStart = false)
+#endif
         {
             if (ownerType == null)
             {
