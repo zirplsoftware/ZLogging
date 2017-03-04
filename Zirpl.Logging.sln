@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{6E8A84B1-317D-4115-8DFD-848EA44FDE95}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code To Integrate Later", "
 		Code To Integrate Later\StackTraceLayoutRenderer.cs = Code To Integrate Later\StackTraceLayoutRenderer.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.Logging.Common", "Zirpl.Logging.Common\Zirpl.Logging.Common.csproj", "{4BF24261-5A0A-4881-8806-5E034E071091}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,12 +58,17 @@ Global
 		{08439795-DB54-49E8-B22E-0706BF5C1934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08439795-DB54-49E8-B22E-0706BF5C1934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08439795-DB54-49E8-B22E-0706BF5C1934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF24261-5A0A-4881-8806-5E034E071091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF24261-5A0A-4881-8806-5E034E071091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF24261-5A0A-4881-8806-5E034E071091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF24261-5A0A-4881-8806-5E034E071091}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3751B438-F98E-4FBE-98E7-9DC0904743C6} = {712CC044-7465-43EC-9759-5C42B8D17611}
+		{01665016-0AA6-4567-AD37-4E4D99AB91B4} = {712CC044-7465-43EC-9759-5C42B8D17611}
 		{08439795-DB54-49E8-B22E-0706BF5C1934} = {712CC044-7465-43EC-9759-5C42B8D17611}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
